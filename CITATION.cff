@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata below."
+title: "evidence-audit-skill"
+abstract: "A security audit skill for Claude Code, Codex, Cursor and OpenCode where every confirmed finding carries evidence that a script checks against the real files."
+type: software
+authors:
+  - family-names: "Puliyappottammal"
+    given-names: "Jijesh"
+repository-code: "https://github.com/pJijesh/evidence-audit-skill"
+url: "https://github.com/pJijesh/evidence-audit-skill"
+license: MIT
+version: 1.0.0
+date-released: "2026-11-11"
+keywords:
+  - agent-skills
+  - security-audit
+  - claude-code
+  - codex
+  - cursor
+  - opencode
+  - vulnerability-research

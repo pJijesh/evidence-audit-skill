@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Generated files are current
+        run: node scripts/build.mjs --check
+      - name: Run tests
+        run: node --test
+      - name: Verify the worked example against its target
+        run: |
+          node skills/evidence-audit/scripts/verify-findings.mjs examples/findings.json --root examples/target-app
+          node skills/evidence-audit/scripts/validate-ledger.mjs examples/coverage-ledger.json --findings examples/findings.json --root examples/target-app
+      - name: Install dry run for every agent
+        run: node scripts/install.mjs all --dry-run

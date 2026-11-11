@@ -1,0 +1,16 @@
+{
+  "name": "evidence-audit-skill",
+  "version": "1.0.0",
+  "description": "A security audit skill for Claude Code, Codex, Cursor and OpenCode where every confirmed finding carries evidence that a script checks against the real files.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Puliyappottammal Jijesh",
+  "repository": { "type": "git", "url": "git+https://github.com/pJijesh/evidence-audit-skill.git" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "test": "node --test",
+    "verify:example": "node skills/evidence-audit/scripts/verify-findings.mjs examples/findings.json --root examples/target-app"
+  },
+  "engines": { "node": ">=18" }
+}

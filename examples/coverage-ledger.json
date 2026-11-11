@@ -1,0 +1,81 @@
+{
+  "target": "target-app (Kettle Lane Bookings, fictional)",
+  "units": [
+    {
+      "id": "U-01",
+      "path": "app.py",
+      "kind": "entrypoint",
+      "risk": "high",
+      "status": "hunted",
+      "classes_checked": [
+        "injection",
+        "authn-authz",
+        "secrets-crypto",
+        "deserialization-ssrf-files",
+        "cloud-iac",
+        "data-exposure"
+      ],
+      "findings": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005",
+        "F-006",
+        "F-007",
+        "F-008",
+        "F-009"
+      ]
+    },
+    {
+      "id": "U-02",
+      "path": "static/app.js",
+      "kind": "client-code",
+      "risk": "medium",
+      "status": "hunted",
+      "classes_checked": [
+        "injection",
+        "data-exposure"
+      ],
+      "findings": [
+        "F-012",
+        "F-013"
+      ]
+    },
+    {
+      "id": "U-03",
+      "path": "agent.py",
+      "kind": "agent-tooling",
+      "risk": "high",
+      "status": "hunted",
+      "classes_checked": [
+        "llm-agents",
+        "injection"
+      ],
+      "findings": [
+        "F-011"
+      ]
+    },
+    {
+      "id": "U-04",
+      "path": ".github/workflows/ci.yml",
+      "kind": "ci-cd",
+      "risk": "high",
+      "status": "hunted",
+      "classes_checked": [
+        "supply-chain-ci"
+      ],
+      "findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "U-05",
+      "path": "README.md",
+      "kind": "other",
+      "risk": "low",
+      "status": "skipped",
+      "note": "Documentation only; contains no code or configuration."
+    }
+  ]
+}

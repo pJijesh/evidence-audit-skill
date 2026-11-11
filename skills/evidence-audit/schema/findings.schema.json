@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "evidence-audit findings",
+  "type": "object",
+  "required": ["target", "audited_at", "findings"],
+  "properties": {
+    "target": { "type": "string", "description": "Name of the repository or system audited" },
+    "audited_at": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "revision": { "type": "string", "description": "Commit or version audited" },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "title", "class", "severity", "summary"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^F-\\d{3}$" },
+          "status": { "enum": ["confirmed", "needs_validation", "rejected"] },
+          "title": { "type": "string" },
+          "class": { "enum": ["injection", "authn-authz", "secrets-crypto", "deserialization-ssrf-files", "supply-chain-ci", "cloud-iac", "llm-agents", "data-exposure", "other"] },
+          "cwe": { "type": "string", "pattern": "^CWE-\\d+$" },
+          "severity": { "enum": ["critical", "high", "medium", "low", "info"] },
+          "likelihood": { "enum": ["high", "medium", "low"] },
+          "impact": { "enum": ["high", "medium", "low"] },
+          "summary": { "type": "string" },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["file", "start_line", "end_line", "quote"],
+              "properties": {
+                "file": { "type": "string", "description": "Path relative to the audited root" },
+                "start_line": { "type": "integer", "minimum": 1 },
+                "end_line": { "type": "integer", "minimum": 1 },
+                "quote": { "type": "string", "description": "The exact code, copied from the file" }
+              }
+            }
+          },
+          "data_flow": { "type": "array", "items": { "type": "string" }, "description": "Steps from attacker-controlled input to the dangerous operation, each with file:line" },
+          "attacker": { "type": "string", "description": "Who can trigger it and what they need" },
+          "impact_detail": { "type": "string" },
+          "fix": { "type": "string" },
+          "to_validate": { "type": "string", "description": "needs_validation only: what must be tested or confirmed, and how" },
+          "rejection_reason": { "type": "string", "description": "rejected only: why it is not a vulnerability" },
+          "verified_by": { "type": "string", "description": "confirmed only: how a second pass checked it" }
+        }
+      }
+    }
+  }
+}

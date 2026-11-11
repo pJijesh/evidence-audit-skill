@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "evidence-audit coverage ledger",
+  "type": "object",
+  "required": ["target", "units"],
+  "properties": {
+    "target": { "type": "string" },
+    "units": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "kind", "risk", "status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^U-\\d{2,3}$" },
+          "path": { "type": "string" },
+          "kind": { "enum": ["entrypoint", "auth", "data-access", "file-handling", "outbound-request", "process-execution", "client-code", "ci-cd", "config", "agent-tooling", "library", "other"] },
+          "risk": { "enum": ["high", "medium", "low"] },
+          "status": { "enum": ["not_started", "hunted", "skipped"] },
+          "classes_checked": { "type": "array", "items": { "type": "string" } },
+          "findings": { "type": "array", "items": { "type": "string" } },
+          "note": { "type": "string", "description": "Required when status is hunted with no findings, or skipped: what was checked or why it was skipped" }
+        }
+      }
+    }
+  }
+}
