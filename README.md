@@ -105,7 +105,7 @@ The result is [`examples/REPORT.md`](examples/REPORT.md): 11 confirmed findings 
 
 - The tests cover every failure mode of the verifier (a quote not in the file, on the wrong lines, a missing file, a line past the end, a reversed range, a path that escapes the root, a bad data-flow reference), the required fields for each status, enum and id checks, malformed input, the ledger rules, determinism of the report and that it matches the committed one, the command line and its exit codes, each installer in a temporary directory, that the generated files are current, and repository hygiene.
 - Every quoted line and line number in the worked example was checked by the verifier against the fixture and the data-flow references were checked by hand.
-- It was run on Node 22 here. The CI workflow covers Node 18, 20 and 22 and was not run from this environment until after the push.
+- It was run on Node 22 here. The CI workflow covers Node 18, 20 and 22 and passes on GitHub Actions.
 - The skill has not been tested with a real agent on a real codebase, so there is no claim about how many real vulnerabilities it finds or misses.
 
 ## Roadmap
